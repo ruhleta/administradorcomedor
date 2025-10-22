@@ -1,0 +1,8 @@
+ .accordion-content { display: none; transition: all 0.3s ease-out; }
+        .modal-overlay { transition: opacity 0.3s ease; }
+        .modal-content { transition: all 0.3s ease; }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { -moz-appearance: textfield; }
+        /* Estilos básicos para la versión PDF (aplicados inline en PHP ahora) */
+        @media print { .pdf-page-break { page-break-before: always; } }

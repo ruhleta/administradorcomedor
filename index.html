@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <svg class="h-10 w-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                </svg>
+                <span class="text-xl sm:text-2xl font-bold text-gray-800">Comedor - Nombre Escuela</span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-6 mt-6">
+
+        <div class="bg-white shadow-lg rounded-lg p-4 mb-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
+                <div class="mb-4 sm:mb-0"><span id="current-date-small" class="text-sm font-semibold text-gray-700"></span></div>
+                <div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
+                    <div class="text-xs"><span class="font-medium text-blue-600">Desayuno:</span> <span id="rt-count-desayuno" class="font-bold text-gray-800">--</span></div>
+                    <div class="text-xs"><span class="font-medium text-green-600">Almuerzo:</span> <span id="rt-count-almuerzo" class="font-bold text-gray-800">--</span></div>
+                    <div class="text-xs"><span class="font-medium text-yellow-600">Merienda:</span> <span id="rt-count-merienda" class="font-bold text-gray-800">--</span></div>
+                    <div class="text-xs"><span class="font-medium text-indigo-600">Cena:</span> <span id="rt-count-cena" class="font-bold text-gray-800">--</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4">
+
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+                    <h2 class="text-2xl font-semibold text-gray-900">Estado Sistema</h2>
+                    <svg class="w-6 h-6 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="accordion-content px-6 pb-6 border-t border-gray-200">
+                    <div class="mt-6 flex flex-col sm:flex-row gap-4">
+                        <button id="btn-disable-system" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg 
+                                       disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Deshabilitar Sistema
+                        </button>
+                        <button id="btn-enable-system" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg hidden">
+                            Habilitar Sistema
+                        </button>
+                    </div>
+                    <p class="mt-4 text-sm text-gray-500">
+                        Al deshabilitar el sistema, los alumnos y preceptores no podrán acceder a sus paneles (Ej: para feriados o días institucionales).
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+                    <h2 class="text-2xl font-semibold text-gray-900">Gestión de Usuarios</h2>
+                    <svg class="w-6 h-6 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="accordion-content px-6 pb-6 border-t border-gray-200">
+                    <div class="mt-6 flex flex-col md:flex-row gap-4">
+                        <button id="btn-open-agregar" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg">Agregar Usuario</button>
+                        <button id="btn-open-modificar" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-4 rounded-lg">Modificar Usuario</button>
+                        <button id="btn-open-eliminar" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg">Eliminar Usuario</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+                    <h2 class="text-2xl font-semibold text-gray-900">Consulta Usuarios</h2>
+                    <svg class="w-6 h-6 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="accordion-content px-6 pb-6 border-t border-gray-200">
+                    <form id="form-consulta-usuario" class="mt-6 flex gap-4">
+                        <input type="number" id="consulta-dni" class="flex-grow mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Buscar por DNI" required>
+                        <button type="submit" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg">Buscar</button>
+                    </form>
+                    <div id="consulta-resultado" class="mt-6 p-4 border border-gray-200 rounded-md bg-gray-50 min-h-[50px]">
+                        <p class="text-gray-500">Ingrese un DNI para buscar...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+                    <h2 class="text-2xl font-semibold text-gray-900">Generar Reporte</h2>
+                    <svg class="w-6 h-6 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="accordion-content px-6 pb-6 border-t border-gray-200">
+                    <form id="form-generar-reporte" class="mt-6 space-y-4">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="flex-1 w-full">
+                                <label for="reporte-fecha-inicio" class="block text-sm font-medium text-gray-700">Fecha Inicial</label>
+                                <input type="date" id="reporte-fecha-inicio" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
+                            </div>
+                            <div class="flex-1 w-full">
+                                <label for="reporte-fecha-fin" class="block text-sm font-medium text-gray-700">Fecha Final</label>
+                                <input type="date" id="reporte-fecha-fin" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg">Generar por Rango</button>
+                            <button type="button" id="btn-reporte-mes" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg">Generar Reporte del Mes</button>
+                        </div>
+                    </form>
+                    <div id="reporte-resultado" class="mt-6 p-4 border border-gray-200 rounded-md bg-gray-50 min-h-[50px] max-h-96 overflow-y-auto">
+                        <p class="text-gray-500">Seleccione un rango de fechas o genere el reporte mensual...</p>
+                    </div>
+                    <div id="download-pdf-container" class="mt-4 text-right hidden">
+                        <button id="btn-download-pdf" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg">Descargar PDF</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+                <button class="accordion-header w-full flex justify-between items-center p-6 text-left">
+                    <h2 class="text-2xl font-semibold text-gray-900">Estadísticas (Hoy)</h2>
+                    <svg class="w-6 h-6 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div class="accordion-content px-6 pb-6 border-t border-gray-200">
+                    <div id="estadisticas-contenido" class="mt-6 space-y-4">
+                        <p class="text-gray-500">Cargando estadísticas...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 flex justify-end">
+            <a href="#logout" class="text-sm font-medium text-gray-600 hover:text-red-500">Cerrar Sesión</a>
+        </div>
+    </main>
+
+    <div id="modal-agregar" class="hidden fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="modal-overlay fixed inset-0 bg-gray-500 bg-opacity-75"></div>
+            <form id="form-agregar-usuario" class="modal-content bg-white rounded-lg shadow-xl transform transition-all sm:max-w-xl w-full z-10 max-h-[90vh] overflow-y-auto">
+                <div class="sticky top-0 bg-white px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-xl leading-6 font-medium text-gray-900">Agregar Nuevo Usuario</h3>
+                </div>
+                <div class="px-6 py-4 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="add-nombre" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                            <input type="text" id="add-nombre" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" required>
+                        </div>
+                        <div>
+                            <label for="add-dni" class="block text-sm font-medium text-gray-700">DNI</label>
+                            <input type="number" id="add-dni" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" required>
+                        </div>
+                        <div>
+                            <label for="add-password" class="block text-sm font-medium text-gray-700">Contraseña (igual al DNI)</label>
+                            <input type="password" id="add-password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-200" readonly required>
+                        </div>
+                        <div>
+                            <label for="add-email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                            <input type="email" id="add-email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" required>
+                        </div>
+                        <div>
+                            <label for="add-rol" class="block text-sm font-medium text-gray-700">Rol</label>
+                            <select id="add-rol" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm" required>
+                                <option value="alumno">Alumno</option>
+                                <option value="preceptor">Personal Administrativo / Preceptor</option>
+                                <option value="comedor">Usuario Comedor</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="add-nacimiento" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
+                            <input type="date" id="add-nacimiento" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" required>
+                        </div>
+                        <div>
+                            <label for="add-sangre" class="block text-sm font-medium text-gray-700">Grupo Sanguíneo</label>
+                            <select id="add-sangre" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm">
+                                <option>A+</option>
+                                <option>A-</option>
+                                <option>B+</option>
+                                <option>B-</option>
+                                <option>AB+</option>
+                                <option>AB-</option>
+                                <option>0+</option>
+                                <option>0-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="alumno-fields-container" class="pt-4 border-t border-gray-200 space-y-4">
+                        <h4 class="text-md font-semibold text-gray-800">Datos Adicionales Alumno</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="add-año" class="block text-sm font-medium text-gray-700">Año</label>
+                                <select id="add-año" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm">
+                                    <option value="1">1er Año</option>
+                                    <option value="2">2do Año</option>
+                                    <option value="3">3er Año</option>
+                                    <option value="4">4to Año</option>
+                                    <option value="5">5to Año</option>
+                                    <option value="6">6to Año</option>
+                                    <option value="7">7mo Año</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="add-curso" class="block text-sm font-medium text-gray-700">Curso</label>
+                                <select id="add-curso" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm"></select>
+                            </div>
+                            <div>
+                                <label for="add-foto" class="block text-sm font-medium text-gray-700">Foto del Alumno</label>
+                                <input type="file" id="add-foto" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                            </div>
+                            <div>
+                                <label for="add-dieta" class="block text-sm font-medium text-gray-700">Tipo de Dieta</label>
+                                <select id="add-dieta" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm">
+                                    <option value="0">Ninguna</option>
+                                    <option value="1">Tipo 1 (Ej: Vegetariana)</option>
+                                    <option value="2">Tipo 2 (Ej: Celíaca)</option>
+                                    <option value="3">Tipo 3 (Ej: Vegana)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="add-alergias" class="block text-sm font-medium text-gray-700">Alergias</label>
+                            <input type="text" id="add-alergias" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" placeholder="Ej: Maní, Lactosa">
+                        </div>
+                        <div>
+                            <label for="add-obs" class="block text-sm font-medium text-gray-700">Observaciones</label>
+                            <textarea id="add-obs" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" placeholder="Cualquier otra información médica relevante..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="sticky bottom-0 bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 sm:ml-3 sm:w-auto sm:text-sm">Agregar</button>
+                    <button type="button" id="btn-cancel-agregar" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modal-modificar" class="hidden fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="modal-overlay fixed inset-0 bg-gray-500 bg-opacity-75"></div>
+            <div class="modal-content bg-white rounded-lg shadow-xl transform transition-all sm:max-w-xl w-full z-10 max-h-[90vh] overflow-y-auto">
+                <div class="sticky top-0 bg-white px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-xl leading-6 font-medium text-gray-900">Modificar Usuario</h3>
+                </div>
+                <div id="mod-buscar-container" class="px-6 py-4">
+                    <form id="form-buscar-modificar" class="flex gap-4">
+                        <input type="number" id="mod-buscar-dni" class="flex-grow mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm" placeholder="Buscar por DNI" required>
+                        <button type="submit" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg">Buscar</button>
+                    </form>
+                    <p id="mod-buscar-error" class="text-red-600 text-sm mt-2 hidden">Usuario no encontrado.</p>
+                </div>
+                <form id="form-modificar-usuario" class="hidden">
+                    <div class="px-6 py-4 space-y-4 border-t border-gray-200">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="mod-nombre" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+                                <input type="text" id="mod-nombre" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" required>
+                            </div>
+                            <div>
+                                <label for="mod-dni" class="block text-sm font-medium text-gray-700">DNI (No editable)</label>
+                                <input type="number" id="mod-dni" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-200" readonly>
+                            </div>
+                            <div>
+                                <label for="mod-password" class="block text-sm font-medium text-gray-700">Nueva Contraseña (Opcional)</label>
+                                <input type="password" id="mod-password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" placeholder="Dejar en blanco para no cambiar">
+                            </div>
+                            <div>
+                                <label for="mod-email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                                <input type="email" id="mod-email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" required>
+                            </div>
+                            <div>
+                                <label for="mod-rol" class="block text-sm font-medium text-gray-700">Rol</label>
+                                <select id="mod-rol" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm" required>
+                                    <option value="alumno">Alumno</option>
+                                    <option value="preceptor">Personal Administrativo / Preceptor</option>
+                                    <option value="comedor">Usuario Comedor</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="mod-nacimiento" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
+                                <input type="date" id="mod-nacimiento" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3" required>
+                            </div>
+                            <div>
+                                <label for="mod-sangre" class="block text-sm font-medium text-gray-700">Grupo Sanguíneo</label>
+                                <select id="mod-sangre" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm">
+                                    <option>A+</option>
+                                    <option>A-</option>
+                                    <option>B+</option>
+                                    <option>B-</option>
+                                    <option>AB+</option>
+                                    <option>AB-</option>
+                                    <option>0+</option>
+                                    <option>0-</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="mod-alumno-fields-container" class="hidden pt-4 border-t border-gray-200 space-y-4">
+                            <h4 class="text-md font-semibold text-gray-800">Datos Adicionales Alumno</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="mod-año" class="block text-sm font-medium text-gray-700">Año</label>
+                                    <select id="mod-año" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm">
+                                        <option value="1">1er Año</option>
+                                        <option value="2">2do Año</option>
+                                        <option value="3">3er Año</option>
+                                        <option value="4">4to Año</option>
+                                        <option value="5">5to Año</option>
+                                        <option value="6">6to Año</option>
+                                        <option value="7">7mo Año</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="mod-curso" class="block text-sm font-medium text-gray-700">Curso</label>
+                                    <select id="mod-curso" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm"></select>
+                                </div>
+                                <div>
+                                    <label for="mod-dieta" class="block text-sm font-medium text-gray-700">Tipo de Dieta</label>
+                                    <select id="mod-dieta" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm">
+                                        <option value="0">Ninguna</option>
+                                        <option value="1">Tipo 1 (Ej: Vegetariana)</option>
+                                        <option value="2">Tipo 2 (Ej: Celíaca)</option>
+                                        <option value="3">Tipo 3 (Ej: Vegana)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="mod-alergias" class="block text-sm font-medium text-gray-700">Alergias</label>
+                                <input type="text" id="mod-alergias" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3">
+                            </div>
+                            <div>
+                                <label for="mod-obs" class="block text-sm font-medium text-gray-700">Observaciones</label>
+                                <textarea id="mod-obs" rows="2" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="sticky bottom-0 bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="submit" form="form-modificar-usuario" id="btn-submit-modificar" class="hidden w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 sm:ml-3 sm:w-auto sm:text-sm">Modificar</button>
+                    <button type="button" id="btn-cancel-modificar" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-eliminar" class="hidden fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="modal-overlay fixed inset-0 bg-gray-500 bg-opacity-75"></div>
+            <div class="modal-content bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg w-full z-10">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-xl leading-6 font-medium text-gray-900">Eliminar Usuario</h3>
+                </div>
+                <div id="del-buscar-container" class="px-6 py-4">
+                    <form id="form-buscar-eliminar" class="flex gap-4">
+                        <input type="number" id="del-buscar-dni" class="flex-grow mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm" placeholder="Buscar por DNI" required>
+                        <button type="submit" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg">Buscar</button>
+                    </form>
+                    <p id="del-buscar-error" class="text-red-600 text-sm mt-2 hidden">Usuario no encontrado.</p>
+                </div>
+                <form id="form-eliminar-usuario" class="hidden">
+                    <div class="px-6 py-4 space-y-3 border-t border-gray-200">
+                        <p class="text-sm text-gray-600">Se eliminará el siguiente usuario:</p>
+                        <div>
+                            <span class="block text-xs font-medium text-gray-500">Nombre</span>
+                            <p id="del-info-nombre" class="font-semibold text-gray-900"></p>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-medium text-gray-500">DNI</span>
+                            <p id="del-info-dni" class="font-semibold text-gray-900"></p>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-medium text-gray-500">Correo</span>
+                            <p id="del-info-email" class="font-semibold text-gray-900"></p>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-medium text-gray-500">Rol</span>
+                            <p id="del-info-rol" class="font-semibold text-gray-900"></p>
+                        </div>
+                    </div>
+                </form>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="submit" form="form-eliminar-usuario" id="btn-submit-eliminar" class="hidden w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm">Eliminar</button>
+                    <button type="button" id="btn-cancel-eliminar" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-confirmacion" class="hidden fixed inset-0 z-50 overflow-y-auto" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="modal-overlay fixed inset-0 bg-gray-500 bg-opacity-75"></div>
+            <div class="modal-content bg-white rounded-lg shadow-xl transform transition-all sm:max-w-lg w-full z-10">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <svg class="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 id="confirm-title" class="text-lg leading-6 font-medium text-gray-900">Confirmar Acción</h3>
+                            <div class="mt-2">
+                                <p id="confirm-message" class="text-sm text-gray-500">¿Estás seguro de que quieres continuar?</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button id="btn-confirmar-final" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 sm:ml-3 sm:w-auto sm:text-sm">Sí, confirmar</button>
+                    <button id="btn-cancelar-final" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pdf-temp-container"></div>
+
+    <script src="scipt.js"></script>
+
+</body>
+</html>
